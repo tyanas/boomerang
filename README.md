@@ -9,11 +9,12 @@ Install compass, run `compass watch` in project dir, edit `*.sass` files.
 `compass` will create (or recreate) `*.css` files.
 See `config.rb` for details.
 
-##Deploy tipster
+##Deploy boomerang / echoist / Rec.All
 
 once install heroku toolbelt and (in project root dir):
 
-    git remote add heroku git@heroku.com:.git
+    heroku apps:create echoist
+    git remote add heroku git@heroku.com:echoist.git
 
 when master branch is "stable":
 
