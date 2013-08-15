@@ -1,4 +1,15 @@
-/* line 3, ../sass/app.sass */
+/* line 2, ../sass/app.sass */
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/* line 6, ../sass/app.sass */
+a {
+  color: #00b7ff;
+}
+
+/* line 9, ../sass/app.sass */
 section {
   display: -webkit-box;
   display: -moz-box;
