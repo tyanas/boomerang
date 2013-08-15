@@ -9,6 +9,6 @@
     "express": "latest",
     "forever": "latest",
     "plivo-node": "latest",
-    "jade": "*"
+    "ejs": "latest"
   }
 }

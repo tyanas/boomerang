@@ -1,42 +1,12 @@
-<section ng-controller="IndexController" scroll class="watch_scroll">
-	
-	<section id="secondSlide" class=" promo-second" data-ng-init="all_users()">
-        <h1 class="promo-header">Tipsters</h1>
-        <ul class="promo-list">
-            <li data-ng-repeat="user in users">
-            <img src="/img/trash/profile.jpg">
-                <h2>{{user.name}}</h2>
-	 	 	events:
-<!--		<section ng-include onload="guery='\'{followers:ObjectId(\'' + user._id + '\')}\''" src="'views/gigs/_list.html'"></section> 
-			<section onload="userId = user._id"  ng-include src="'views/gigs/_list.html'"></section> -->				
-    			<div ng-repeat="gig in user.followedGigs">
-        			<a ng-href="#!/gigs/{{gig._id}}">{{gig.title}}</a>
-    			</div>
-		<div>
-            </li>
-        </ul>
-	<div class="clear"></div>
-        <h1 data-ng-hide="!users || users.length">No tipsters yet. <br> Why don't you <a href="/signup">register</a>?</h1>
-      </section>
-
-
-<!--
-  <section ng-include src="'views/_curators.html'" onload="resizeMe('.promo-curators')">
-  </section>
-
-  <section id="secondSlide" class="promo-second">
-    <h1 class="promo-header">Tipsters</h1>
-    <section ng-include src="'views/_users.html'"></section>
-  </section>
-
-  <section id="thirdSlide" class="promo-third promo-list">
-    <h1 class="promo-header">Events</h1>
-    <section ng-include src="'views/gigs/list.html'"></section>
-    <div class="clear"></div>
-  </section>
-
-  <footer class="promo-nav">
-    <h1 id="secondHeader" class="promo-header promo-second" >Tipsters</h1>
-    <h1 id="thirdHeader" class="promo-header promo-third" >Events</h1>
-  </footer> -->
-</section>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rec.All</title>
+        <link rel="stylesheet" href="/css/app.css">
+    </head>
+    <body>
+        <h1>Rec.All</h1>
+        <p>Welcome to Rec.All</p>
+        <h1>+1 623-552-4233</h1>
+    </body>
+</html>

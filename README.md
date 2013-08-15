@@ -36,3 +36,10 @@ when master branch is "stable":
  Then open a browser and go to:
     
     http://localhost:3000
+
+## Min project
+    
+    npm -g install express
+    express boomerang
+
+Add `forever` model to packages -- is needed for heroku deployment
