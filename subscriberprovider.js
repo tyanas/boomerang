@@ -4,11 +4,32 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-SubscriberProvider = function(host, port) {
-  this.db= new Db(process.env.MONGOHQ_DB, new Server(
-        process.env.MONGOHQ_HOST, process.env.MONGOHQ_PORT, 
-        {safe: false}, {auto_reconnect: true}, {}), {safe:false});
-  this.db.open(function(){});
+SubscriberProvider = function() {
+  var _parent = this;
+  this.db = new Db(
+      process.env.MONGOHQ_DB,
+      new Server(
+          process.env.MONGOHQ_HOST,
+          process.env.MONGOHQ_PORT,
+          {auto_reconnect: true},
+          {}), {safe: false});
+
+  //open the db connection and then authenticate
+  if (process.env.MONGOHQ_USER == '') {
+    this.db.open(function() {});
+  } else {
+    this.db.open(function(err) {
+        _parent.db.authenticate(
+          process.env.MONGOHQ_USER,
+          process.env.MONGOHQ_PASSWORD,
+          function(err) {
+                if (err) {
+                   console.log(err);
+                }
+            }
+        );
+    });
+  }
 };
 
 
@@ -76,7 +97,7 @@ SubscriberProvider.prototype.update = function(subscriberId, subscribers, callba
 					subscribers,
 					function(error, subscribers) {
 						if(error) callback(error);
-						else callback(null, subscribers)       
+						else callback(null, subscribers)
 					});
       }
     });
