@@ -29,8 +29,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-var subscriberProvider= new SubscriberProvider(
-      process.env.MONGOHQ_HOST, process.env.MONGOHQ_PORT);
+var subscriberProvider= new SubscriberProvider();
 
 //Routes
 
