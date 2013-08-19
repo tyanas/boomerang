@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app"
   },
   "dependencies": {
     "express": "latest",
+    "mongodb": ">= 0.9.6-7",
     "forever": "latest",
     "plivo-node": "latest",
     "ejs": "latest"
