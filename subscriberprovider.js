@@ -5,7 +5,8 @@ var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
 SubscriberProvider = function(host, port) {
-  this.db= new Db('node-mongo-subscriber', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
+  this.db= new Db('node-mongo-subscriber', new Server(
+        host, port, {safe: false}, {auto_reconnect: true}, {}), {safe:false});
   this.db.open(function(){});
 };
 
