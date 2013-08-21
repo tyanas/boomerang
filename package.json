@@ -9,7 +9,7 @@
     "express": "latest",
     "mongodb": ">= 0.9.6-7",
     "forever": "latest",
-    "plivo-node": "latest",
+    "plivo": "latest",
     "ejs": "latest"
   }
 }
