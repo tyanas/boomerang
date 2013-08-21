@@ -7,7 +7,13 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
+  , plivo = require('plivo')
   , SubscriberProvider = require('./subscriberprovider').SubscriberProvider;
+
+var api = plivo.RestAPI({
+  authId: process.env.PLIVO_AUTH_ID,
+  authToken: process.env.PLIVO_AUTH_TOKEN
+});
 
 var app = express();
 
@@ -30,7 +36,39 @@ app.configure('development', function(){
 
 var subscriberProvider= new SubscriberProvider();
 
+/**
+ * api.make_call accepts params and callback
+ */
+
+// Keys and values to be used for params are the same as documented for our REST API.
+// So for using RestAPI.make_call, valid params can be checked
+// at https://www.plivo.com/docs/api/call/#outbound.
+var params = {
+  from: '22222',
+  to: process.emv.SIP_NUMBER,
+  answer_url: 'https://s3.amazonaws.com/plivosamplexml/play_url.xml',
+};
+
+callMe = function(res) {
+  api.make_call(params, function(status, response) {
+    if (status >= 200 && status < 300) {
+      console.log('Successfully made call request.');
+      console.log('Response:', response);
+    } else {
+      console.log('Oops! Something went wrong.');
+      console.log('Status:', status);
+      console.log('Response:', response);
+    }
+    res.send(response);
+  });
+};
+
 //Routes
+
+// plivo call
+app.get('/call', function(req, res){
+  callMe(res);
+});
 
 //index
 app.get('/', function(req, res){
