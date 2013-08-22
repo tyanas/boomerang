@@ -7,18 +7,22 @@
 <body>
   <h1>{{ title }}</h1>
   <div class="newSubscriber">
-    <form method="post">
+    <form method="post" action="">
       <div>
-        <input type="text" name="phoneNumber" id="editSubscriberPhoneNumber">
+        <input type="text" name="phoneNumber" id="editSubscriberPhoneNumber"
+          placeholder="Type your phone number like 79871234567">
         <span id="newSubscriberSubmit"><input type="submit" value="Save"></span>
       </div>
+      <p>{{ message }}</p>
+      <p>{{ resp }}</p>
     </form>
 
     <div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="{{ paypal_button_key }}">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        Also you can
+        <input type="submit" name="submit" value="Pay $2" alt="PayPal - The safer, easier way to pay online!">
       </form>
     </div>
 

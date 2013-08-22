@@ -46,13 +46,20 @@ var subscriberProvider= new SubscriberProvider();
 // So for using RestAPI.make_call, valid params can be checked
 // at https://www.plivo.com/docs/api/call/#outbound.
 var params = {
-  from: '22222',
+  from: '1234567890',
   //to: process.env.SIP_NUMBER,
   to: process.env.REAL_NUMBER,
   answer_url: 'https://s3.amazonaws.com/plivosamplexml/play_url.xml',
 };
 
-callMe = function(res) {
+var index_data = {
+        paypal_button_key: process.env.PAYPAL_BUTTON_KEY,
+        title: 'rECHOrd'
+    };
+
+callMe = function(req, res) {
+  console.log(req.body.phoneNumber);
+  params.to = req.body.phoneNumber;
   api.make_call(params, function(status, response) {
     if (status >= 200 && status < 300) {
       console.log('Successfully made call request.');
@@ -62,7 +69,8 @@ callMe = function(res) {
       console.log('Status:', status);
       console.log('Response:', response);
     }
-    res.send(response);
+    index_data['resp'] = response.message;
+    res.redirect('/')
   });
 };
 
@@ -70,15 +78,12 @@ callMe = function(res) {
 
 // plivo call
 app.get('/call', function(req, res){
-  callMe(res);
+  callMe(req, res);
 });
 
 //index
 app.get('/', function(req, res){
-    res.render('index.html', {
-        paypal_button_key: process.env.PAYPAL_BUTTON_KEY,
-        title: 'rECHOrd'
-    });
+    res.render('index.html', index_data);
 });
 
 //save new subscriber
@@ -86,7 +91,8 @@ app.post('/', function(req, res){
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
-        res.redirect('/')
+        index_data['message'] = req.body.phoneNumber;
+        callMe(req, res);
     });
 });
 
