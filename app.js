@@ -47,9 +47,10 @@ var subscriberProvider= new SubscriberProvider();
 // at https://www.plivo.com/docs/api/call/#outbound.
 var params = {
   from: '1234567890',
-  //to: process.env.SIP_NUMBER,
-  to: process.env.REAL_NUMBER,
-  answer_url: 'https://s3.amazonaws.com/plivosamplexml/play_url.xml',
+  to: process.env.SIP_NUMBER,
+  //to: process.env.REAL_NUMBER,
+  //answer_url: 'http://pastebin.com/raw.php?i=cSFWiTFn',
+  answer_url: process.env.PLIVO_ANSWER_URL
 };
 
 var index_data = {
@@ -58,8 +59,6 @@ var index_data = {
     };
 
 callMe = function(req, res) {
-  console.log(req.body.phoneNumber);
-  params.to = req.body.phoneNumber;
   api.make_call(params, function(status, response) {
     if (status >= 200 && status < 300) {
       console.log('Successfully made call request.');
@@ -69,7 +68,7 @@ callMe = function(req, res) {
       console.log('Status:', status);
       console.log('Response:', response);
     }
-    index_data['resp'] = response.message;
+    index_data['resp'] = response.message + ". ";
     res.redirect('/')
   });
 };
@@ -91,7 +90,15 @@ app.post('/', function(req, res){
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
-        index_data['message'] = req.body.phoneNumber;
+        index_data['message'] = "Please wait for about 30 sec. Calling "+req.body.phoneNumber;
+        index_data['extra'] = "And please listen for at least 30 sec";
+
+        if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
+          params.to = req.body.phoneNumber;
+          if (params.to == process.env.PLIVO_SPEC_NUMBER) {
+            params.answer_url = process.env.PLIVO_SPEC_ANSWER_URL;
+          }
+        }
         callMe(req, res);
     });
 });
