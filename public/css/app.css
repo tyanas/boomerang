@@ -6,109 +6,98 @@ input {
 
 /* line 5, ../sass/app.sass */
 body {
-  padding: 50px;
   font-size: 14px;
-  text-align: center;
   margin-left: 15%;
   margin-bottom: 40px;
   background: #f8f5f0 url("../img/paper_background.jpg") 0 0 no-repeat;
   background-size: cover;
 }
 
-/* line 14, ../sass/app.sass */
-a {
-  color: #00b7ff;
+/* line 13, ../sass/app.sass */
+.hidden {
+  display: none;
 }
 
-/* line 17, ../sass/app.sass */
-h1,
-h2 {
-  margin: 0;
-  font-size: 22px;
-  color: #343434;
+/* line 16, ../sass/app.sass */
+#phone {
+  position: absolute;
+  height: 80%;
+  left: 56%;
+  top: 15%;
 }
 
-/* line 23, ../sass/app.sass */
-h1 {
-  text-shadow: 1px 2px 2px #dddddd;
-  font-size: 60px;
+/* line 22, ../sass/app.sass */
+#note {
+  font-size: 45px;
+  margin-top: 200px;
+  font-weight: bold;
 }
 
 /* line 27, ../sass/app.sass */
-.newSubscriber {
-  width: 450px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 14px;
-}
-
-/* line 33, ../sass/app.sass */
-input[type=text] {
-  width: 300px;
-  margin-left: 16px;
-}
-
-/* line 37, ../sass/app.sass */
-#phone {
-  position: absolute;
-  height: 80%;
-  left: 56%;
-  top: 15%;
-}
-
-/* line 43, ../sass/app.sass */
-#note {
-  position: absolute;
-  font-size: 35px;
-  top: 25%;
-}
-
-/* line 48, ../sass/app.sass */
 #sub {
   font-size: 20px;
 }
 
-/* line 51, ../sass/app.sass */
+/* line 30, ../sass/app.sass */
 #but {
-  position: absolute;
+  margin-top: 80px;
+}
+/* line 33, ../sass/app.sass */
+#but input {
   background: #d35400;
   color: white;
-  font-size: 25px;
-  padding: 5px;
-  top: 70%;
+  font-size: 35px;
+  padding: 10px;
   outline: none;
   border: none;
   display: block;
+  font-weight: 100;
+  width: 480px;
+}
+/* line 44, ../sass/app.sass */
+#but input::-webkit-input-placeholder {
+  color: white;
+}
+/* line 47, ../sass/app.sass */
+#but input:-moz-placeholder {
+  color: white;
+}
+/* line 50, ../sass/app.sass */
+#but input::-moz-placeholder {
+  color: white;
+}
+/* line 53, ../sass/app.sass */
+#but input:-ms-input-placeholder {
+  color: white;
 }
 
-/* line 62, ../sass/app.sass */
+/* line 57, ../sass/app.sass */
 .over:hover {
   color: #828282;
   cursor: pointer;
+}
+
+/* line 61, ../sass/app.sass */
+#floor {
+  position: absolute;
+  top: 95%;
+  left: 85%;
 }
 
 /* line 66, ../sass/app.sass */
-#floor {
-  position: absolute;
-  top: 95%;
-  left: 85%;
-}
-
-/* line 71, ../sass/app.sass */
 .orange {
   color: #d35400;
   font-size: 25px;
+}
+
+/* line 70, ../sass/app.sass */
+#exp {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: -26px;
 }
 
 /* line 75, ../sass/app.sass */
-#exp {
-  position: absolute;
-  left: 15%;
-  top: 40%;
-  visibility: hidden;
-}
-
-/* line 81, ../sass/app.sass */
 #pay {
   position: absolute;
   background: #d35400;
@@ -120,79 +109,7 @@ input[type=text] {
   cursor: pointer;
 }
 
-/* line 91, ../sass/app.sass */
-#phone {
-  position: absolute;
-  height: 80%;
-  left: 56%;
-  top: 15%;
-}
-
-/* line 97, ../sass/app.sass */
-#note {
-  position: absolute;
-  font-size: 35px;
-  top: 25%;
-}
-
-/* line 102, ../sass/app.sass */
-#sub {
-  font-size: 20px;
-}
-
-/* line 105, ../sass/app.sass */
-#but {
-  position: absolute;
-  background: #d35400;
-  color: white;
-  font-size: 25px;
-  padding: 5px;
-  top: 70%;
-  outline: none;
-  border: none;
-  display: block;
-}
-
-/* line 116, ../sass/app.sass */
-.over:hover {
-  color: #828282;
-  cursor: pointer;
-}
-
-/* line 120, ../sass/app.sass */
-#floor {
-  position: absolute;
-  top: 95%;
-  left: 85%;
-}
-
-/* line 125, ../sass/app.sass */
-.orange {
-  color: #d35400;
-  font-size: 25px;
-}
-
-/* line 129, ../sass/app.sass */
-#exp {
-  position: absolute;
-  left: 15%;
-  top: 40%;
-  visibility: hidden;
-}
-
-/* line 135, ../sass/app.sass */
-#pay {
-  position: absolute;
-  background: #d35400;
-  color: white;
-  font-size: 25px;
-  padding: 5px;
-  top: 70%;
-  visibility: hidden;
-  cursor: pointer;
-}
-
-/* line 145, ../sass/app.sass */
+/* line 86, ../sass/app.sass */
 #help {
   position: absolute;
   padding: 5px;
@@ -205,7 +122,7 @@ input[type=text] {
   top: 80%;
 }
 
-/* line 156, ../sass/app.sass */
+/* line 97, ../sass/app.sass */
 #faqt {
   position: absolute;
   top: 10%;
@@ -218,7 +135,7 @@ input[type=text] {
   overflow-y: scroll;
 }
 
-/* line 167, ../sass/app.sass */
+/* line 108, ../sass/app.sass */
 #home {
   position: fixed;
   font-size: 35px;
@@ -227,7 +144,7 @@ input[type=text] {
   cursor: pointer;
   visibility: hidden;
 }
-/* line 175, ../sass/app.sass */
+/* line 116, ../sass/app.sass */
 #home:hover {
   color: #828282;
 }

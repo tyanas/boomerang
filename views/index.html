@@ -5,29 +5,61 @@
     <link rel="stylesheet" type="text/css" href="css/app.css" />
     <title>{{ title }}</title>
   </head>
-<body>
-  <h1>{{ title }}</h1>
-  <div class="newSubscriber">
+<body ng-app ng-init="show_input=true">
+  <img src="img/phone.png"  id="phone" />
+
+  <div id="note">
+    <div ng-show="show_input">
+      Message <br> to the  <br> Future <br> 
+      <span id="sub">leave a message to your future self </span>
+    </div>
+    <div ng-hide="show_input">
+      Great! Here's the deal...
+    </div>
+  </div>
+
+  <div id="but" ng-show="show_input" ng-init="myStyle={width: '427px'}">
+    <form ng-submit="show_input=false">
+      <input type="text" ng-model="phoneNumber"
+        ng-keydown="l=20+22*phoneNumber.length || 427; myStyle={width: l+'px'}"
+        ng-style="myStyle"
+        placeholder="Enter your phone number"
+        contenteditable="true">
+    </form>
+  </div>
+
+  <div id="exp" ng-hide="show_input">
+    <span class="orange">1.&#160;</span> <b>Pay</b> $1<br>
+    <span class="orange">2.&#160;</span> <b>We</b>'ll <b>call</b> you. <br>
+    <span class="orange">3.&#160;</span> Leave a <b> 5 - 10 min voice memo </b> and hang up the phone<br>
+    <span class="orange">4.&#160;</span> In <b> 2 years</b> in the future we'll call you and you will hear your past self. <br>
+  </div>
+
+  <div class="newSubscriber" ng-hide="show_input">
     <form method="post" action="">
       <div>
-        <input type="text" name="phoneNumber" id="editSubscriberPhoneNumber"
-          placeholder="Type your phone number like 79871234567"
-          >
-        <span id="newSubscriberSubmit"><input type="submit" value="Call me"></span>
+        <input type="text" ng-model="phoneNumber">
+        <input type="submit" value="Fire a call">
       </div>
-      <p>{{ resp }} {{ message }}<br>{{ extra }}</p>
+      {#<p>{{ resp }} {{ message }}<br>{{ extra }}</p>#}
     </form>
+  </div>
 
-    <div>
+    <!--div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="{{ paypal_button_key }}">
         Also you can
         <input type="submit" name="submit" value="Pay $2" alt="PayPal - The safer, easier way to pay online!">
+        <div id="pay">Pay $1</div>
       </form>
-    </div>
+    </div-->
 
+  <div id="floor">
+    <span class="over" id="faq" >FAQ   &#160;</span>
+    <span class="over">Disclaimer</span>
   </div>
+
 
   <script type="text/javascript" src="lib/angular-unstable/angular.min.js"></script>
 </body>
