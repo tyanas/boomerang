@@ -3,6 +3,7 @@
  */
 
 var express = require('express')
+  , engines = require('consolidate')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -20,8 +21,9 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.engine('html', require('ejs').renderFile);
+  app.set('view engine', 'handlebars');
   app.set('view options', {layout: false});
+  app.engine('.html', engines.handlebars);
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -45,7 +47,8 @@ var subscriberProvider= new SubscriberProvider();
 // at https://www.plivo.com/docs/api/call/#outbound.
 var params = {
   from: '22222',
-  to: process.emv.SIP_NUMBER,
+  //to: process.env.SIP_NUMBER,
+  to: process.env.REAL_NUMBER,
   answer_url: 'https://s3.amazonaws.com/plivosamplexml/play_url.xml',
 };
 
@@ -73,7 +76,8 @@ app.get('/call', function(req, res){
 //index
 app.get('/', function(req, res){
     res.render('index.html', {
-        title: 'Rec.All'
+        paypal_button_key: process.env.PAYPAL_BUTTON_KEY,
+        title: 'rECHOrd'
     });
 });
 
