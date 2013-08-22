@@ -1,19 +1,26 @@
 /* line 1, ../sass/app.sass */
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  text-align: center;
-  text-stroke: 1px rgba(255, 255, 255, 0.1);
-  color: #555555;
+body,
+input {
+  font-family: "Roboto Slab", serif;
 }
 
-/* line 9, ../sass/app.sass */
+/* line 5, ../sass/app.sass */
+body {
+  padding: 50px;
+  font-size: 14px;
+  text-align: center;
+  margin-left: 15%;
+  margin-bottom: 40px;
+  background: #f8f5f0 url("../img/paper_background.jpg") 0 0 no-repeat;
+  background-size: cover;
+}
+
+/* line 14, ../sass/app.sass */
 a {
   color: #00b7ff;
 }
 
-/* line 12, ../sass/app.sass */
+/* line 17, ../sass/app.sass */
 h1,
 h2 {
   margin: 0;
@@ -21,13 +28,13 @@ h2 {
   color: #343434;
 }
 
-/* line 18, ../sass/app.sass */
+/* line 23, ../sass/app.sass */
 h1 {
   text-shadow: 1px 2px 2px #dddddd;
   font-size: 60px;
 }
 
-/* line 22, ../sass/app.sass */
+/* line 27, ../sass/app.sass */
 .newSubscriber {
   width: 450px;
   margin-left: auto;
@@ -35,8 +42,192 @@ h1 {
   padding: 14px;
 }
 
-/* line 28, ../sass/app.sass */
+/* line 33, ../sass/app.sass */
 input[type=text] {
   width: 300px;
   margin-left: 16px;
+}
+
+/* line 37, ../sass/app.sass */
+#phone {
+  position: absolute;
+  height: 80%;
+  left: 56%;
+  top: 15%;
+}
+
+/* line 43, ../sass/app.sass */
+#note {
+  position: absolute;
+  font-size: 35px;
+  top: 25%;
+}
+
+/* line 48, ../sass/app.sass */
+#sub {
+  font-size: 20px;
+}
+
+/* line 51, ../sass/app.sass */
+#but {
+  position: absolute;
+  background: #d35400;
+  color: white;
+  font-size: 25px;
+  padding: 5px;
+  top: 70%;
+  outline: none;
+  border: none;
+  display: block;
+}
+
+/* line 62, ../sass/app.sass */
+.over:hover {
+  color: #828282;
+  cursor: pointer;
+}
+
+/* line 66, ../sass/app.sass */
+#floor {
+  position: absolute;
+  top: 95%;
+  left: 85%;
+}
+
+/* line 71, ../sass/app.sass */
+.orange {
+  color: #d35400;
+  font-size: 25px;
+}
+
+/* line 75, ../sass/app.sass */
+#exp {
+  position: absolute;
+  left: 15%;
+  top: 40%;
+  visibility: hidden;
+}
+
+/* line 81, ../sass/app.sass */
+#pay {
+  position: absolute;
+  background: #d35400;
+  color: white;
+  font-size: 25px;
+  padding: 5px;
+  top: 70%;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+/* line 91, ../sass/app.sass */
+#phone {
+  position: absolute;
+  height: 80%;
+  left: 56%;
+  top: 15%;
+}
+
+/* line 97, ../sass/app.sass */
+#note {
+  position: absolute;
+  font-size: 35px;
+  top: 25%;
+}
+
+/* line 102, ../sass/app.sass */
+#sub {
+  font-size: 20px;
+}
+
+/* line 105, ../sass/app.sass */
+#but {
+  position: absolute;
+  background: #d35400;
+  color: white;
+  font-size: 25px;
+  padding: 5px;
+  top: 70%;
+  outline: none;
+  border: none;
+  display: block;
+}
+
+/* line 116, ../sass/app.sass */
+.over:hover {
+  color: #828282;
+  cursor: pointer;
+}
+
+/* line 120, ../sass/app.sass */
+#floor {
+  position: absolute;
+  top: 95%;
+  left: 85%;
+}
+
+/* line 125, ../sass/app.sass */
+.orange {
+  color: #d35400;
+  font-size: 25px;
+}
+
+/* line 129, ../sass/app.sass */
+#exp {
+  position: absolute;
+  left: 15%;
+  top: 40%;
+  visibility: hidden;
+}
+
+/* line 135, ../sass/app.sass */
+#pay {
+  position: absolute;
+  background: #d35400;
+  color: white;
+  font-size: 25px;
+  padding: 5px;
+  top: 70%;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+/* line 145, ../sass/app.sass */
+#help {
+  position: absolute;
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  border: 2px solid rgba(130, 130, 130, 0.4);
+  border-radius: 5px;
+  background: transparent;
+  visibility: hidden;
+  top: 80%;
+}
+
+/* line 156, ../sass/app.sass */
+#faqt {
+  position: absolute;
+  top: 10%;
+  width: 40%;
+  height: 80%;
+  border: none;
+  padding: 20px;
+  visibility: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* line 167, ../sass/app.sass */
+#home {
+  position: fixed;
+  font-size: 35px;
+  top: 5%;
+  left: 5%;
+  cursor: pointer;
+  visibility: hidden;
+}
+/* line 175, ../sass/app.sass */
+#home:hover {
+  color: #828282;
 }

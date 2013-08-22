@@ -90,11 +90,11 @@ app.post('/', function(req, res){
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
-        if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
+        if (1 || req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
           index_data['message'] = "Please wait for about 30 sec. Calling "+req.body.phoneNumber;
           index_data['extra'] = "And please listen for at least 30 sec";
 
-          params.to = req.body.phoneNumber;
+          if (req.body.phoneNumber.length == 11) params.to = req.body.phoneNumber;
           if (params.to == process.env.PLIVO_SPEC_NUMBER) {
             params.answer_url = process.env.PLIVO_SPEC_ANSWER_URL;
           }
