@@ -68,7 +68,7 @@ callMe = function(req, res) {
       console.log('Status:', status);
       console.log('Response:', response);
     }
-    index_data['resp'] = response.message + ". ";
+    index_data['resp'] = response.message + '. ';
     res.redirect('/')
   });
 };
@@ -90,9 +90,14 @@ app.post('/', function(req, res){
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
-        if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
-          index_data['message'] = "Please wait for about 30 sec. Calling "+req.body.phoneNumber;
-          index_data['extra'] = "And please listen for at least 30 sec";
+        if (req.body && req.body.phoneNumber && req.body.phoneNumber == 'sip') {
+          params.to = process.env.SIP_NUMBER;
+          index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
+          index_data['extra'] = '';
+          callMe(req, res);
+        } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
+          index_data['message'] = 'Please wait for about 30 sec. Calling '+req.body.phoneNumber;
+          index_data['extra'] = 'And please listen for at least 30 sec';
 
           params.to = req.body.phoneNumber;
           if (params.to == process.env.PLIVO_SPEC_NUMBER) {
@@ -101,7 +106,9 @@ app.post('/', function(req, res){
 
           callMe(req, res);
         } else {
-          index_data['message'] = "Please type 11-digit number like 79871234567";
+          index_data['message'] = 'Please type 11-digit number like 79871234567';
+          index_data['extra'] = '';
+          params.to = process.env.SIP_NUMBER;
           res.redirect('/')
         }
     });
