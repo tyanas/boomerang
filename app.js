@@ -3,7 +3,6 @@
  */
 
 var express = require('express')
-  , engines = require('consolidate')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -21,9 +20,8 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'handlebars');
+  app.engine('html', require('ejs').renderFile);
   app.set('view options', {layout: false});
-  app.engine('.html', engines.handlebars);
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -87,9 +85,12 @@ app.get('/', function(req, res){
 
 //save new subscriber
 app.post('/', function(req, res){
+    console.log(req.param('phoneNumber'));
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
-    }, function( error, docs) {
+    }, function(error, docs) {
+        callMe(req, res);
+      /*
         if (1 || req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
           index_data['message'] = "Please wait for about 30 sec. Calling "+req.body.phoneNumber;
           index_data['extra'] = "And please listen for at least 30 sec";
@@ -104,6 +105,7 @@ app.post('/', function(req, res){
           index_data['message'] = "Please type 11-digit number like 79871234567";
           res.redirect('/')
         }
+        */
     });
 });
 

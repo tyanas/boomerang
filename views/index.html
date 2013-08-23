@@ -3,10 +3,10 @@
   <head>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/app.css" />
-    <title>{{ title }}</title>
+    <title>Message to the Future</title>
   </head>
-<body ng-app ng-init="show_input=true">
-  <img src="img/phone.png"  id="phone" />
+<body ng-app ng-init="show_input=false">
+  <!--img src="img/phone.png"  id="phone" /-->
 
   <div id="note">
     <div ng-show="show_input">
@@ -21,7 +21,7 @@
   <div id="but" ng-show="show_input" ng-init="myStyle={width: '427px'}">
     <form ng-submit="show_input=false">
       <input type="text" ng-model="phoneNumber"
-        ng-keydown="l=20+22*phoneNumber.length || 427; myStyle={width: l+'px'}"
+        ng-keydown="l = 22*phoneNumber.length || 417; l = l+20; myStyle={width: l+'px'}"
         ng-style="myStyle"
         placeholder="Enter your phone number"
         contenteditable="true">
@@ -36,12 +36,12 @@
   </div>
 
   <div class="newSubscriber" ng-hide="show_input">
-    <form method="post" action="">
+    <form ng-submit="fireCall()" ng-controller="CallCtrl">
       <div>
         <input type="text" ng-model="phoneNumber">
         <input type="submit" value="Fire a call">
       </div>
-      {#<p>{{ resp }} {{ message }}<br>{{ extra }}</p>#}
+      <div ng-show="msg">{{msg}}</div>
     </form>
   </div>
 
@@ -56,11 +56,12 @@
     </div-->
 
   <div id="floor">
-    <span class="over" id="faq" >FAQ   &#160;</span>
+    <span class="over" id="faq">FAQ</span> &ndash;
     <span class="over">Disclaimer</span>
   </div>
 
 
   <script type="text/javascript" src="lib/angular-unstable/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

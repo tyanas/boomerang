@@ -19,6 +19,6 @@
     "paynode":"latest",
     "bower":"latest",
     "consolidate":"latest",
-    "handlebars": "latest"
+    "ejs": "latest"
   }
 }
