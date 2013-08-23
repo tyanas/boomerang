@@ -9,6 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , plivo = require('plivo')
+  , XMLWriter = require('xml-writer')
   , SubscriberProvider = require('./subscriberprovider').SubscriberProvider;
 
 var api = plivo.RestAPI({
@@ -85,8 +86,38 @@ app.get('/', function(req, res){
     res.render('index.html', index_data);
 });
 
+// 
+app.get('/scenario.xml', function(req, res){
+    xw = new XMLWriter;
+    xw.startDocument()
+      .startElement('Response')
+        .startElement('Speak').text('Please leave a message after the beep. '
+          + 'You will have two minutes. Press the star key when done.')
+        .endElement('Speak')
+        .startElement('Record').writeAttribute('maxLength','600').endElement('Record')
+      .endElement('Response');
+    xw.endDocument();
+
+    console.log(xw.toString());
+    res.set('Content-Type', 'text/xml');
+    res.send(xw.toString());
+});
+
+//save new subscriber
+app.post('/new/recording', function(req, res){
+    subscriberProvider.saveRecording({
+        url: req.param('RecordUrl'),
+        duration: req.param('RecordingDuration'),
+        durationMs: req.param('RecordingDurationMs'),
+        start: req.param('RecordingStartMs'),
+        end: req.param('RecordingEndMs')
+    }, function( error, docs) {
+    });
+});
+
 //save new subscriber
 app.post('/', function(req, res){
+    params.answer_url = req.headers.referer + 'scenario.xml';
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
