@@ -151,7 +151,7 @@ app.post('/', function(req, res){
           res.redirect('/')
         }
 
-        params.answer_url = req.headers.referer + 'scenario.xml' + '?number=' + req.body.phoneNumber;
+        params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + req.body.phoneNumber;
         //params.answer_url += "?number=" + req.body.phoneNumber;
         callMe(req, res);
     });
