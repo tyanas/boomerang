@@ -88,13 +88,18 @@ app.get('/', function(req, res){
 
 // 
 app.post('/scenario.xml', function(req, res){
-    xw = new XMLWriter;
+    var xw = new XMLWriter,
+        number = req.param('number') || params.to,
+        actionUrl = req.headers.referer + 'new/recording?number=' + number;
     xw.startDocument(varsion='1.0', encoding='UTF-8')
       .startElement('Response')
         .startElement('Speak').text('Please leave a message after the beep. '
           + 'You will have two minutes. Press the star key when done.')
         .endElement('Speak')
-        .startElement('Record').writeAttribute('maxLength','600').endElement('Record')
+        .startElement('Record')
+          .writeAttribute('maxLength','600')
+          .writeAttribute('action', actionUrl)
+        .endElement('Record')
         .startElement('Speak').text('Thanks for your call').endElement('Speak')
       .endElement('Response');
     xw.endDocument();
@@ -106,43 +111,49 @@ app.post('/scenario.xml', function(req, res){
 
 //save new subscriber
 app.post('/new/recording', function(req, res){
-    subscriberProvider.saveRecording({
-        url: req.param('RecordUrl'),
-        duration: req.param('RecordingDuration'),
-        durationMs: req.param('RecordingDurationMs'),
+    var rdata = {
+        number: req.param('number') || '',
+        url: req.param('RecordUrl') || '',
+        duration: req.param('RecordingDuration') || 0,
+        durationMs: req.param('RecordingDurationMs') || 0,
         start: req.param('RecordingStartMs'),
         end: req.param('RecordingEndMs')
-    }, function( error, docs) {
+    };
+    console.log(rdata);
+    subscriberProvider.saveRecording(rdata, function( error, docs) {
     });
+    res.send(rdata);
 });
 
 //save new subscriber
 app.post('/', function(req, res){
-    //params.answer_url = req.headers.referer + 'scenario.xml';
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
         if (req.body && req.body.phoneNumber && req.body.phoneNumber == 'sip') {
-          params.to = process.env.SIP_NUMBER;
+
           index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
           index_data['extra'] = '';
-          callMe(req, res);
+
+          params.to = process.env.SIP_NUMBER;
+
         } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
+
           index_data['message'] = 'Please wait for about 30 sec. Calling '+req.body.phoneNumber;
           index_data['extra'] = 'And please listen for at least 30 sec';
 
           params.to = req.body.phoneNumber;
-          if (params.to == process.env.PLIVO_SPEC_NUMBER) {
-            params.answer_url = process.env.PLIVO_SPEC_ANSWER_URL;
-          }
 
-          callMe(req, res);
         } else {
           index_data['message'] = 'Please type 11-digit number like 79871234567';
           index_data['extra'] = '';
           params.to = process.env.SIP_NUMBER;
           res.redirect('/')
         }
+
+        params.answer_url = req.headers.referer + 'scenario.xml' + '?number=' + req.body.phoneNumber;
+        //params.answer_url += "?number=" + req.body.phoneNumber;
+        callMe(req, res);
     });
 });
 
