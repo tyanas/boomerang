@@ -87,7 +87,7 @@ app.get('/', function(req, res){
 });
 
 // 
-app.get('/scenario.xml', function(req, res){
+app.post('/scenario.xml', function(req, res){
     xw = new XMLWriter;
     xw.startDocument(varsion='1.0', encoding='UTF-8')
       .startElement('Response')
