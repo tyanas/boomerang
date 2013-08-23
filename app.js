@@ -89,17 +89,18 @@ app.get('/', function(req, res){
 // 
 app.get('/scenario.xml', function(req, res){
     xw = new XMLWriter;
-    xw.startDocument()
+    xw.startDocument(varsion='1.0', encoding='UTF-8')
       .startElement('Response')
         .startElement('Speak').text('Please leave a message after the beep. '
           + 'You will have two minutes. Press the star key when done.')
         .endElement('Speak')
         .startElement('Record').writeAttribute('maxLength','600').endElement('Record')
+        .startElement('Speak').text('Thanks for your call').endElement('Speak')
       .endElement('Response');
     xw.endDocument();
 
     console.log(xw.toString());
-    res.set('Content-Type', 'text/xml');
+    res.set('Content-Type', 'text/plain; charset=utf-8');
     res.send(xw.toString());
 });
 
@@ -117,7 +118,7 @@ app.post('/new/recording', function(req, res){
 
 //save new subscriber
 app.post('/', function(req, res){
-    params.answer_url = req.headers.referer + 'scenario.xml';
+    //params.answer_url = req.headers.referer + 'scenario.xml';
     subscriberProvider.save({
         phoneNumber: req.param('phoneNumber')
     }, function( error, docs) {
