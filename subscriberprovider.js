@@ -76,7 +76,7 @@ SubscriberProvider.prototype.findById = function(id, callback) {
 
 //save new subscriber
 SubscriberProvider.prototype.saveRecording = function(recordings, callback) {
-    this.getCollection(function(error, recording_collection) {
+    this.getRecordingCollection(function(error, recording_collection) {
       if( error ) callback(error)
       else {
         if( typeof(recordings.length)=="undefined")
