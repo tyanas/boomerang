@@ -90,7 +90,7 @@ app.get('/', function(req, res){
 app.post('/scenario.xml', function(req, res){
     var xw = new XMLWriter,
         number = req.param('number') || params.to,
-        actionUrl = req.headers.referer + 'new/recording?number=' + number;
+        actionUrl = process.env.ECHO_REFERER + 'new/recording?number=' + number;
     xw.startDocument(varsion='1.0', encoding='UTF-8')
       .startElement('Response')
         .startElement('Speak').text('Please leave a message after the beep. '
@@ -132,27 +132,20 @@ app.post('/', function(req, res){
     }, function( error, docs) {
         if (req.body && req.body.phoneNumber && req.body.phoneNumber == 'sip') {
 
-          index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
-          index_data['extra'] = '';
-
           params.to = process.env.SIP_NUMBER;
 
         } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
-
-          index_data['message'] = 'Please wait for about 30 sec. Calling '+req.body.phoneNumber;
-          index_data['extra'] = 'And please listen for at least 30 sec';
 
           params.to = req.body.phoneNumber;
 
         } else {
           index_data['message'] = 'Please type 11-digit number like 79871234567';
-          index_data['extra'] = '';
           params.to = process.env.SIP_NUMBER;
           res.redirect('/')
         }
 
-        params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + req.body.phoneNumber;
-        //params.answer_url += "?number=" + req.body.phoneNumber;
+        index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
+        params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + params.to;
         callMe(req, res);
     });
 });
