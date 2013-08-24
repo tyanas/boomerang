@@ -12,7 +12,7 @@ var express = require('express')
   , XMLWriter = require('xml-writer')
   , SubscriberProvider = require('./subscriberprovider').SubscriberProvider;
 
-var api = plivo.RestAPI({
+var plivo_api = plivo.RestAPI({
   authId: process.env.PLIVO_AUTH_ID,
   authToken: process.env.PLIVO_AUTH_TOKEN
 });
@@ -39,18 +39,9 @@ app.configure('development', function(){
 
 var subscriberProvider= new SubscriberProvider();
 
-/**
- * api.make_call accepts params and callback
- */
-
-// Keys and values to be used for params are the same as documented for our REST API.
-// So for using RestAPI.make_call, valid params can be checked
-// at https://www.plivo.com/docs/api/call/#outbound.
 var params = {
   from: '1234567890',
   to: process.env.SIP_NUMBER,
-  //to: process.env.REAL_NUMBER,
-  //answer_url: 'http://pastebin.com/raw.php?i=cSFWiTFn',
   answer_url: process.env.PLIVO_ANSWER_URL
 };
 
@@ -59,8 +50,8 @@ var index_data = {
         title: 'rECHOrd'
     };
 
-callMe = function(req, res) {
-  api.make_call(params, function(status, response) {
+var callMe = function(req, res) {
+  plivo_api.make_call(params, function(status, response) {
     if (status >= 200 && status < 300) {
       console.log('Successfully made call request.');
       console.log('Response:', response);
@@ -76,17 +67,12 @@ callMe = function(req, res) {
 
 //Routes
 
-// plivo call
-app.get('/call', function(req, res){
-  callMe(req, res);
-});
-
-//index
+// index
 app.get('/', function(req, res){
     res.render('index.html', index_data);
 });
 
-// 
+// message recording scenario 
 app.post('/scenario.xml', function(req, res){
     var xw = new XMLWriter,
         number = req.param('number') || params.to,
@@ -94,7 +80,7 @@ app.post('/scenario.xml', function(req, res){
     xw.startDocument(varsion='1.0', encoding='UTF-8')
       .startElement('Response')
         .startElement('Speak').text('Please leave a message after the beep. '
-          + 'You will have two minutes. Press the star key when done.')
+          + 'You have ten minutes.')
         .endElement('Speak')
         .startElement('Record')
           .writeAttribute('maxLength','600')
@@ -104,12 +90,11 @@ app.post('/scenario.xml', function(req, res){
       .endElement('Response');
     xw.endDocument();
 
-    console.log(xw.toString());
     res.set('Content-Type', 'text/plain; charset=utf-8');
     res.send(xw.toString());
 });
 
-//save new subscriber
+// save new subscriber
 app.post('/new/recording', function(req, res){
     var rdata = {
         number: req.param('number') || '',
@@ -119,35 +104,30 @@ app.post('/new/recording', function(req, res){
         start: req.param('RecordingStartMs'),
         end: req.param('RecordingEndMs')
     };
-    console.log(rdata);
     subscriberProvider.saveRecording(rdata, function( error, docs) {
       res.send('OK');
     });
 });
 
-//save new subscriber
+// make outbound call to record a message
 app.post('/', function(req, res){
-    subscriberProvider.save({
-        phoneNumber: req.param('phoneNumber')
-    }, function( error, docs) {
-        if (req.body && req.body.phoneNumber && req.body.phoneNumber == 'sip') {
+  if (req.body && req.body.phoneNumber && req.body.phoneNumber == 'sip') {
 
-          params.to = process.env.SIP_NUMBER;
+    params.to = process.env.SIP_NUMBER;
 
-        } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
+  } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
 
-          params.to = req.body.phoneNumber;
+    params.to = req.body.phoneNumber;
 
-        } else {
-          index_data['message'] = 'Please type 11-digit number like 79871234567';
-          params.to = process.env.SIP_NUMBER;
-          res.redirect('/')
-        }
+  } else {
+    index_data['message'] = 'Please type 11-digit number like 79871234567';
+    params.to = process.env.SIP_NUMBER;
+    res.redirect('/')
+  }
 
-        index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
-        params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + params.to;
-        callMe(req, res);
-    });
+  index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
+  params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + params.to;
+  callMe(req, res);
 });
 
 
