@@ -19,6 +19,7 @@
     "paynode":"latest",
     "bower":"latest",
     "consolidate":"latest",
+    "xml-writer":"latest",
     "ejs": "latest"
   }
 }

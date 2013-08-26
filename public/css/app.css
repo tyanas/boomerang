@@ -6,145 +6,146 @@ input {
 
 /* line 5, ../sass/app.sass */
 body {
-  font-size: 14px;
-  margin-left: 15%;
-  margin-bottom: 40px;
+  padding: 50px;
+  font-size: 13px;
+  color: #555555;
   background: #f8f5f0 url("../img/paper_background.jpg") 0 0 no-repeat;
   background-size: cover;
 }
 
-/* line 13, ../sass/app.sass */
-.hidden {
-  display: none;
+/* line 12, ../sass/app.sass */
+.holdPhone {
+  width: 400px;
+  margin: 0 auto;
+  padding: 0 400px 0 0;
+  background: url(../img/phone.png) top right no-repeat;
+  min-height: 655px;
+}
+/* line 19, ../sass/app.sass */
+.holdPhone > h1,
+.holdPhone > div {
+  width: 400px;
 }
 
-/* line 16, ../sass/app.sass */
-#phone {
-  position: absolute;
-  height: 80%;
-  left: 56%;
-  top: 15%;
+/* line 23, ../sass/app.sass */
+a {
+  color: #00b7ff;
 }
 
-/* line 22, ../sass/app.sass */
-#note {
-  font-size: 45px;
-  margin-top: 200px;
-  font-weight: bold;
+/* line 26, ../sass/app.sass */
+h1,
+h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #343434;
 }
 
-/* line 27, ../sass/app.sass */
-#sub {
-  font-size: 20px;
+/* line 32, ../sass/app.sass */
+h1 {
+  text-shadow: 1px 2px 2px #dddddd;
+  font-size: 60px;
 }
 
-/* line 30, ../sass/app.sass */
-#but {
-  margin-top: 80px;
+/* line 36, ../sass/app.sass */
+h2 {
+  padding: 20px 0;
 }
-/* line 33, ../sass/app.sass */
-#but input {
+
+/* line 39, ../sass/app.sass */
+input.invis {
+  width: 0;
+  border: 0;
+  padding: 0;
+}
+
+/* line 44, ../sass/app.sass */
+input[type=text] {
+  width: 380px;
+  height: 36px;
+  line-height: 33px;
+  padding: 5px 3px;
+  font-size: 30px;
   background: #d35400;
   color: white;
-  font-size: 35px;
-  padding: 10px;
-  outline: none;
-  border: none;
-  display: block;
-  font-weight: 100;
-  width: 480px;
+  border: 0;
 }
-/* line 44, ../sass/app.sass */
-#but input::-webkit-input-placeholder {
+/* line 54, ../sass/app.sass */
+input[type=text]::-webkit-input-placeholder {
   color: white;
+  font-size: 16px;
 }
-/* line 47, ../sass/app.sass */
-#but input:-moz-placeholder {
+/* line 58, ../sass/app.sass */
+input[type=text]:-moz-placeholder {
   color: white;
+  font-size: 16px;
 }
-/* line 50, ../sass/app.sass */
-#but input::-moz-placeholder {
+/* line 62, ../sass/app.sass */
+input[type=text]::-moz-placeholder {
   color: white;
+  font-size: 16px;
 }
-/* line 53, ../sass/app.sass */
-#but input:-ms-input-placeholder {
-  color: white;
-}
-
-/* line 57, ../sass/app.sass */
-.over:hover {
-  color: #828282;
-  cursor: pointer;
-}
-
-/* line 61, ../sass/app.sass */
-#floor {
-  position: absolute;
-  top: 95%;
-  left: 85%;
-}
-
 /* line 66, ../sass/app.sass */
-.orange {
-  color: #d35400;
-  font-size: 25px;
+input[type=text]:-ms-input-placeholder {
+  color: white;
+  font-size: 16px;
 }
 
 /* line 70, ../sass/app.sass */
-#exp {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: -26px;
+.menu {
+  list-style-type: none;
+  margin: 10px auto;
+  padding: 0 0 10px 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
-
-/* line 75, ../sass/app.sass */
-#pay {
-  position: absolute;
+/* line 78, ../sass/app.sass */
+.menu:after {
+  content: " ";
+  display: block;
+}
+/* line 82, ../sass/app.sass */
+.menu li {
+  float: left;
+  padding: 7px 22px;
+  margin: 0 7px 0 0;
+  cursor: pointer;
+}
+/* line 88, ../sass/app.sass */
+.menu li:first-child {
+  margin-left: -22px;
+}
+/* line 91, ../sass/app.sass */
+.menu li.active, .menu li:hover {
   background: #d35400;
   color: white;
-  font-size: 25px;
-  padding: 5px;
-  top: 70%;
-  visibility: hidden;
+}
+
+/* line 96, ../sass/app.sass */
+.txt {
+  text-align: left;
+  width: 400px;
+  margin: 20px auto;
+}
+/* line 102, ../sass/app.sass */
+.txt h3 span {
   cursor: pointer;
+  float: right;
+}
+/* line 106, ../sass/app.sass */
+.txt h4 {
+  margin: 10px 0 5px;
 }
 
-/* line 86, ../sass/app.sass */
-#help {
-  position: absolute;
-  padding: 5px;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 20px;
-  border: 2px solid rgba(130, 130, 130, 0.4);
-  border-radius: 5px;
-  background: transparent;
-  visibility: hidden;
-  top: 80%;
+/* line 109, ../sass/app.sass */
+.clear {
+  clear: both;
 }
 
-/* line 97, ../sass/app.sass */
-#faqt {
-  position: absolute;
-  top: 10%;
-  width: 40%;
-  height: 80%;
-  border: none;
-  padding: 20px;
-  visibility: hidden;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-/* line 108, ../sass/app.sass */
-#home {
-  position: fixed;
-  font-size: 35px;
-  top: 5%;
-  left: 5%;
+/* line 112, ../sass/app.sass */
+.ppal {
+  border: 0;
+  padding: 7px 14px;
+  background: #e7cda1;
   cursor: pointer;
-  visibility: hidden;
-}
-/* line 116, ../sass/app.sass */
-#home:hover {
-  color: #828282;
 }

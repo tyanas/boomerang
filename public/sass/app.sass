@@ -2,117 +2,115 @@ body,
 input
   font-family: "Roboto Slab", serif
 
-body
-  font-size: 14px
-  margin-left: 15%
-  margin-bottom: 40px
+body 
+  padding: 50px
+  font-size: 13px
+  color: #555
   background: rgb(248,245,240) url('../img/paper_background.jpg') 0 0 no-repeat
   background-size: cover
 
+.holdPhone
+  width: 400px
+  margin: 0 auto
+  padding: 0 400px 0 0
+  background: url(../img/phone.png) top right no-repeat
+  min-height: 655px
 
-.hidden
-  display: none
+  > h1,
+  > div
+    width: 400px
 
-#phone
-  position: absolute
-  height: 80%
-  left: 56%
-  top: 15%
+a 
+  color: #00b7ff
 
-#note
-  font-size: 45px
-  margin-top: 200px
-  font-weight: bold
+h1,
+h2 
+  margin: 0
+  font-size: 18px
+  color: #343434
 
-#sub
-  font-size: 20px
+h1 
+  text-shadow: 1px 2px 2px #ddd
+  font-size: 60px
 
-#but
-  margin-top: 80px
+h2
+  padding: 20px 0
 
-  input
-    background: #d35400
-    color: white
-    font-size: 35px
-    padding: 10px
-    outline: none
-    border: none
-    display: block
-    font-weight: 100
-    width: 480px
+input.invis 
+  width: 0
+  border: 0
+  padding: 0
 
-    &::-webkit-input-placeholder /* WebKit browsers */
-      color: white
-
-    &:-moz-placeholder /* Mozilla Firefox 4 to 18 */
-      color: white
-
-    &::-moz-placeholder /* Mozilla Firefox 19+ */
-      color: white
-
-    &:-ms-input-placeholder /* Internet Explorer 10+ */
-      color: white
-
-
-.over:hover
-  color: rgb(130,130,130)
-  cursor: pointer
-
-#floor
-  position: absolute
-  top: 95%
-  left: 85%
-
-.orange
-  color: #d35400
-  font-size: 25px
-
-#exp
-  margin-top: 20px
-  margin-bottom: 20px
-  margin-left: -26px
-
-#pay
-  position: absolute
+input[type=text] 
+  width: 380px
+  height: 36px
+  line-height: 33px
+  padding: 5px 3px
+  font-size: 30px
   background: #d35400
-  color: white
-  font-size: 25px
-  padding: 5px
-  top: 70%
-  visibility: hidden
-  cursor: pointer	
+  color: #fff
+  border: 0
 
+  &::-webkit-input-placeholder /* WebKit browsers */
+    color: white
+    font-size: 16px
 
-#help
-  position: absolute
-  padding: 5px
-  color: rgba(0,0,0,0.4)
-  font-size: 20px
-  border: 2px solid rgba(130,130,130,0.4)
-  border-radius: 5px
-  background: transparent
-  visibility: hidden
-  top: 80%
+  &:-moz-placeholder /* Mozilla Firefox 4 to 18 */
+    color: white
+    font-size: 16px
 
-#faqt
-  position: absolute
-  top: 10%
-  width:  40%
-  height: 80%
-  border: none
-  padding: 20px
-  visibility: hidden
-  overflow-x: hidden /* horizontal */
-  overflow-y: scroll  /* vertical */
+  &::-moz-placeholder /* Mozilla Firefox 19+ */
+    color: white
+    font-size: 16px
 
-#home
+  &:-ms-input-placeholder /* Internet Explorer 10+ */
+    color: white
+    font-size: 16px
+
+.menu
+  list-style-type: none
+  margin: 10px auto
+  padding: 0 0 10px 0
   position: fixed
-  font-size: 35px
-  top: 5%
-  left: 5% 
+  bottom: 0
+  right: 0
+
+  &:after
+    content: " "
+    display: block
+
+  li
+    float: left
+    padding: 7px 22px
+    margin: 0 7px 0 0
+    cursor: pointer
+
+    &:first-child
+      margin-left: -22px
+
+    &.active,
+    &:hover
+      background: #d35400
+      color: #fff
+
+.txt
+  text-align: left
+  width: 400px
+  margin: 20px auto
+
+  h3
+    span  
+      cursor: pointer
+      float: right
+
+  h4
+    margin: 10px 0 5px
+
+.clear
+  clear: both
+
+.ppal
+  border: 0
+  padding: 7px 14px
+  background: rgb(231, 205, 161)
   cursor: pointer
-  visibility: hidden
-
-  &:hover
-    color: rgb(130,130,130)
-

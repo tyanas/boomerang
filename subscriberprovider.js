@@ -40,6 +40,13 @@ SubscriberProvider.prototype.getCollection= function(callback) {
   });
 };
 
+SubscriberProvider.prototype.getRecordingCollection= function(callback) {
+  this.db.collection('recordings', function(error, recording_collection) {
+    if( error ) callback(error);
+    else callback(null, recording_collection);
+  });
+};
+
 //find all subscribers
 SubscriberProvider.prototype.findAll = function(callback) {
     this.getCollection(function(error, subscriber_collection) {
@@ -66,6 +73,26 @@ SubscriberProvider.prototype.findById = function(id, callback) {
     });
 };
 
+
+//save new subscriber
+SubscriberProvider.prototype.saveRecording = function(recordings, callback) {
+    this.getRecordingCollection(function(error, recording_collection) {
+      if( error ) callback(error)
+      else {
+        if( typeof(recordings.length)=="undefined")
+          recordings = [recordings];
+
+        for( var i =0;i< recordings.length;i++ ) {
+          recording = recordings[i];
+          recording.created_at = new Date();
+        }
+
+        recording_collection.insert(recordings, function() {
+          callback(null, recordings);
+        });
+      }
+    });
+};
 
 //save new subscriber
 SubscriberProvider.prototype.save = function(subscribers, callback) {
