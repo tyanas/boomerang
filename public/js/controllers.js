@@ -15,9 +15,12 @@ function PayPalCtrl($scope, $http, $location) {
 }
 
 function PartsCtrl($scope) {
-  $scope.show_part= '';
+  $scope.show_part = '';
+  $scope.faq_is_active = '';
   $scope.togglePart = function(key) {
     $scope.show_part = $scope.show_part == key ? '' : key;
+    $scope.faq_is_active = $scope.show_part == 'faq' ? 'active' : '';
+    $scope.disclaimer_is_active = $scope.show_part == 'disclaimer' ? 'active' : '';
   }
 }
 
