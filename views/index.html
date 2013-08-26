@@ -15,6 +15,9 @@
       <form>
         <div>
           <input type="text" ng-model="form.phoneNumber"
+            ng-keyup="resizeInput()"
+            ng-keydown="resizeInput()"
+            ng-style="inputStyle"
             placeholder="Type your phone number like 79871234567"
             >
           <input class="invis" type="submit" value="Call me" ng-click="submitCall()">

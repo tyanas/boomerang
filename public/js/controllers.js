@@ -25,8 +25,17 @@ function PartsCtrl($scope) {
 }
 
 function NewCallCtrl($scope, $http, $location) {
-  $scope.form = {};
+  var initInputWidth = 360,
+      inputPadding = 20,
+      letterWidth = 22;
+  $scope.form = {phoneNumber: ''};
   $scope.message = '';
+  $scope.inputStyle = {width: (initInputWidth + inputPadding) + 'px'};
+
+  $scope.resizeInput = function () {
+    var l = letterWidth*$scope.form.phoneNumber.length || initInputWidth;
+    $scope.inputStyle.width = (l + inputPadding)+'px';
+  };
 
   $scope.submitCall = function () {
     $scope.message = 'Thanks for calling! Please wait a bit...';
