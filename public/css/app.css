@@ -40,3 +40,48 @@ input[type=text] {
   width: 300px;
   margin-left: 16px;
 }
+
+/* line 33, ../sass/app.sass */
+.menu {
+  list-style-type: none;
+  width: 200px;
+  margin: 30px auto;
+  padding: 0 0 1px 0;
+}
+/* line 39, ../sass/app.sass */
+.menu:after {
+  content: " ";
+  display: block;
+}
+/* line 43, ../sass/app.sass */
+.menu li {
+  float: left;
+  width: 100px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+/* line 50, ../sass/app.sass */
+.menu li:hover {
+  background: #fefefe;
+}
+
+/* line 53, ../sass/app.sass */
+.txt {
+  text-align: left;
+  width: 400px;
+  margin: 20px auto;
+}
+/* line 59, ../sass/app.sass */
+.txt h3 span {
+  cursor: pointer;
+}
+/* line 62, ../sass/app.sass */
+.txt h4 {
+  margin: 10px 0 5px;
+}
+
+/* line 65, ../sass/app.sass */
+.clear {
+  clear: both;
+}
