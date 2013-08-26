@@ -88,49 +88,51 @@ input[type=text]:-ms-input-placeholder {
 /* line 67, ../sass/app.sass */
 .menu {
   list-style-type: none;
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 0 0 10px 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
-/* line 72, ../sass/app.sass */
+/* line 75, ../sass/app.sass */
 .menu:after {
   content: " ";
   display: block;
 }
-/* line 76, ../sass/app.sass */
+/* line 79, ../sass/app.sass */
 .menu li {
   float: left;
-  width: 90px;
   padding: 7px 22px;
   margin: 0 7px 0 0;
   cursor: pointer;
 }
-/* line 83, ../sass/app.sass */
+/* line 85, ../sass/app.sass */
 .menu li:first-child {
   margin-left: -22px;
 }
-/* line 86, ../sass/app.sass */
+/* line 88, ../sass/app.sass */
 .menu li.active, .menu li:hover {
   background: #d35400;
   color: white;
 }
 
-/* line 91, ../sass/app.sass */
+/* line 93, ../sass/app.sass */
 .txt {
   text-align: left;
   width: 400px;
   margin: 20px auto;
 }
-/* line 97, ../sass/app.sass */
+/* line 99, ../sass/app.sass */
 .txt h3 span {
   cursor: pointer;
   float: right;
 }
-/* line 101, ../sass/app.sass */
+/* line 103, ../sass/app.sass */
 .txt h4 {
   margin: 10px 0 5px;
 }
 
-/* line 104, ../sass/app.sass */
+/* line 106, ../sass/app.sass */
 .clear {
   clear: both;
 }
