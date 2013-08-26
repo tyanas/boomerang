@@ -136,3 +136,11 @@ input[type=text]:-ms-input-placeholder {
 .clear {
   clear: both;
 }
+
+/* line 109, ../sass/app.sass */
+.ppal {
+  border: 0;
+  padding: 7px 14px;
+  background: #e7cda1;
+  cursor: pointer;
+}
