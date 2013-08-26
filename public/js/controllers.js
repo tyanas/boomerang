@@ -14,6 +14,13 @@ function PayPalCtrl($scope, $http, $location) {
   })
 }
 
+function PartsCtrl($scope) {
+  $scope.show_part= '';
+  $scope.togglePart = function(key) {
+    $scope.show_part = $scope.show_part == key ? '' : key;
+  }
+}
+
 function NewCallCtrl($scope, $http, $location) {
   $scope.form = {};
   $scope.message = '';

@@ -29,15 +29,15 @@
       </form>
     </div>
 
-  <div ng-init="show_part=''">
+  <div ng-init="show_part=''" ng-controller="PartsCtrl">
     <ul class="menu">
-      <li ng-click="show_part='faq'">FAQ</li>
-      <li ng-click="show_part='disclaimer'">Disclaimer</li>
+      <li ng-click="togglePart('faq')">FAQ</li>
+      <li ng-click="togglePart('disclaimer')">Disclaimer</li>
     </ul>
     <div class="clear"></div>
     <div ng-show="show_part=='faq'" class="txt">
       <h3>
-        FAQ <span ng-click="show_part=''">[x]</span>
+        FAQ <span ng-click="togglePart('')">[x]</span>
       </h3>
 <h4>What is rECHOrd?</h4> 
 
