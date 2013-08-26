@@ -2,32 +2,34 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/app.css" />
-    <title>{{ title }}</title>
+    <title>rECHOrd</title>
   </head>
-<body>
-  <h1>{{ title }}</h1>
-  <div class="newSubscriber">
-    <form method="post" action="">
+<body ng-app>
+  <h1>rECHOrd</h1>
+
+  <div ng-controller="NewCallCtrl">
+    <form>
       <div>
-        <input type="text" name="phoneNumber" id="editSubscriberPhoneNumber"
+        <input type="text" ng-model="form.phoneNumber"
           placeholder="Type your phone number like 79871234567"
           >
-        <span id="newSubscriberSubmit"><input type="submit" value="Call me"></span>
+        <input type="submit" value="Call me" ng-click="submitCall()">
       </div>
-      <p>{{ resp }} {{ message }}</p>
+      <p>{{ message }}</p>
     </form>
+  </div>
 
-    <div>
+    <div ng-controller="PayPalCtrl">
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="{{ paypal_button_key }}">
-        Also you can
-        <input type="submit" name="submit" value="Pay $2" alt="PayPal - The safer, easier way to pay online!">
+        Today it's free but anyway you can 
+        <input type="submit" name="submit" value="donate $2" alt="PayPal"> 
+        <small>(it's PayPal)</small>
       </form>
     </div>
 
-  </div>
-
   <script type="text/javascript" src="lib/angular-unstable/angular.min.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
 </body>
 </html>

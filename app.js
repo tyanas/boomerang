@@ -4,6 +4,7 @@
 
 var express = require('express')
   , engines = require('consolidate')
+  , ejs = require('ejs')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -22,9 +23,9 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'handlebars');
+  app.set('view engine', 'ejs');
   app.set('view options', {layout: false});
-  app.engine('.html', engines.handlebars);
+  app.engine('html', ejs.renderFile);
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -60,8 +61,7 @@ var callMe = function(req, res) {
       console.log('Status:', status);
       console.log('Response:', response);
     }
-    index_data['resp'] = response.message + '. ';
-    res.redirect('/')
+    res.json({msg: response.message, to: params.to})
   });
 };
 
@@ -70,6 +70,11 @@ var callMe = function(req, res) {
 // index
 app.get('/', function(req, res){
     res.render('index.html', index_data);
+});
+
+// keys
+app.post('/keys', function(req, res){
+    res.json({'paypal_button_key': process.env.PAYPAL_BUTTON_KEY});
 });
 
 // message recording scenario 
@@ -115,19 +120,23 @@ app.post('/', function(req, res){
 
     params.to = process.env.SIP_NUMBER;
 
+  } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.indexOf('sip:') == 0) {
+
+    params.to = req.body.phoneNumber;
+
   } else if (req.body && req.body.phoneNumber && req.body.phoneNumber.length == 11) {
 
     params.to = req.body.phoneNumber;
 
   } else {
-    index_data['message'] = 'Please type 11-digit number like 79871234567';
-    params.to = process.env.SIP_NUMBER;
-    res.redirect('/')
+    params.to = false;
+    res.json({msg: 'error', to: ''});
   }
 
-  index_data['message'] = 'Please wait for about 30 sec. Calling ' + params.to;
-  params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + params.to;
-  callMe(req, res);
+  if (params.to) {
+    params.answer_url = process.env.PLIVO_ANSWER_URL + '?number=' + params.to;
+    callMe(req, res);
+  }
 });
 
 

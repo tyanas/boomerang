@@ -20,6 +20,6 @@
     "bower":"latest",
     "consolidate":"latest",
     "xml-writer":"latest",
-    "handlebars": "latest"
+    "ejs": "latest"
   }
 }
