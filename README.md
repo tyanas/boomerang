@@ -1,5 +1,6 @@
 #boomerang
 
+UPDATE: This project is frozeni now. More or less forever.
 
 Summerschool project - Call to the future
 
