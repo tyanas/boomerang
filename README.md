@@ -1,8 +1,8 @@
 #boomerang
 
-UPDATE: This project is frozeni now. More or less forever.
+UPDATE: This project is frozen now. More or less forever.
 
-Summerschool project - Call to the future
+Dream Industries Summer School'13 project - Call to the future
 
 ##Edit css
 
